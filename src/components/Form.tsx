@@ -1,9 +1,24 @@
+import { ChangeEvent, useState } from "react"
 import { countries } from "../data/countries"
+import { SearchType } from "../types"
 
 
 export const Form = () => {
+
+    const [search, setSearch] = useState<SearchType>({
+        city: '',
+        country: '',
+    })
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => {
+        setSearch({
+            ...search,
+            [e.target.name] : e.target.value
+        })
+    }
+
   return (
-    <div className="contenedor">
+    <div className="contenedor m-10">
 
             {/* {alerta && <p className="alerta">{alerta }</p>} */}
             <form
@@ -18,10 +33,12 @@ export const Form = () => {
                         >Ciudad</label>
                         <input 
                             type="text" 
-                            id="ciudad"
-                            name="ciudad"
+                            id="city"
+                            name="city"
                             className="bg-transparent border rounded-lg p-2 placeholder:uppercase"
                             placeholder="Ciudad"
+                            value={search.city}
+                            onChange={handleChange}
                         />
                     </div>
                     {/* Pais */}
@@ -31,9 +48,11 @@ export const Form = () => {
                             className="mt-3 text-white text-xl uppercase font-bold"
                         >Pais</label>
                         <select 
-                            name="pais" 
-                            id="pais"
-                            className="bg-transparent border rounded-lg p-2"
+                            name="country" 
+                            id="country"
+                            className="bg-transparent border text-gray-400 uppercase rounded-lg p-2"
+                            value={search.country}
+                            onChange={handleChange}
                         >
                             <option value=""> Seleccione un País </option>
                             {countries.map(country => (

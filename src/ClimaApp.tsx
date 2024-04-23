@@ -1,9 +1,10 @@
 import { Form } from "./components/Form"
+import { WeatherDetails } from "./components/WeatherDetails"
 import useWeather from "./hooks/useWeather"
 
 export const ClimaApp = () => {
 
-  const { fetchWeather } = useWeather()
+  const { fetchWeather, weather } = useWeather()
 
   return (
     <div>
@@ -15,7 +16,11 @@ export const ClimaApp = () => {
                   fetchWeather={fetchWeather}
                 />
             </div>
-            <p className="bg-white">2</p>
+            <div>
+              <WeatherDetails 
+                weather={weather}
+              />
+            </div>
         </div>
     </div>
   )

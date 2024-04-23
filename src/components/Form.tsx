@@ -56,7 +56,7 @@ export const Form = ({fetchWeather} : FormProps) => {
                         type="text" 
                         id="city"
                         name="city"
-                        className="bg-transparent border rounded-lg p-2 placeholder:uppercase"
+                        className="bg-transparent text-gray-400 uppercase border rounded-lg p-2 placeholder:uppercase"
                         placeholder="Ciudad"
                         value={search.city}
                         onChange={handleChange}

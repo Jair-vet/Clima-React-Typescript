@@ -1,10 +1,12 @@
+import Alert from "./components/Alert"
 import { Form } from "./components/Form"
+import { Spinner } from "./components/Spinner/Spinner"
+import { WeatherDetails } from "./components/WeatherDetails"
 import useWeather from "./hooks/useWeather"
 
 export const ClimaApp = () => {
 
-  const { fetchWeather } = useWeather()
-
+  const { weather, loading, notFound, fetchWeather, hasWeatherData } = useWeather()
 
   return (
     <div>
@@ -16,7 +18,15 @@ export const ClimaApp = () => {
                   fetchWeather={fetchWeather}
                 />
             </div>
-            <p className="bg-white">2</p>
+            <div>
+              { loading && <Spinner />}
+              { notFound && <Alert>Ciudad No Encontrada</Alert>}
+              { hasWeatherData  && <WeatherDetails weather={weather}/> }
+              {/* { hasWeatherData  
+                ? <WeatherDetails weather={weather}/> 
+                : <div className="text-2xl mt-32 text-yellow-500 font-bold text-center uppercase">No hay Pais para mostrar</div> 
+              } */}
+            </div>
         </div>
     </div>
   )
